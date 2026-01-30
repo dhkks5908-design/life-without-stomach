@@ -1,82 +1,1485 @@
 <!DOCTYPE html>
 <html lang="ko">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>마음사진  김동홍의 위(胃)대한 생존기</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <title>위전절제 환자 건강회복 가이드</title>
     <style>
-        /* 눈이 편안한 치유의 색감 */
-        body { background-color: #f0f7f4; font-family: 'Pretendard', sans-serif; }
-        .hero { background: #4caf50; color: white; padding: 40px 20px; text-align: center; border-radius: 0 0 20px 20px; }
-        .chef-card { border: none; border-radius: 15px; box-shadow: 0 4px 10px rgba(0,0,0,0.1); margin-bottom: 20px; }
-        .card-header { background-color: #e8f5e9; color: #2e7d32; font-weight: bold; font-size: 1.2rem; }
-        .highlight { background-color: #fff9c4; font-weight: bold; padding: 2px 5px; }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Noto Sans KR', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            line-height: 1.8;
+            color: #333;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            overflow: hidden;
+        }
+
+        header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 40px 30px;
+            text-align: center;
+        }
+
+        header h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+        }
+
+        header p {
+            font-size: 1.2em;
+            opacity: 0.95;
+        }
+
+        nav {
+            background: #f8f9fa;
+            padding: 20px;
+            border-bottom: 3px solid #667eea;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 15px;
+        }
+
+        nav button {
+            background: white;
+            border: 2px solid #667eea;
+            color: #667eea;
+            padding: 12px 24px;
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: 600;
+            transition: all 0.3s;
+        }
+
+        nav button:hover,
+        nav button.active {
+            background: #667eea;
+            color: white;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(102, 126, 234, 0.4);
+        }
+
+        .content {
+            padding: 40px 30px;
+        }
+
+        .section {
+            display: none;
+            animation: fadeIn 0.5s;
+        }
+
+        .section.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        h2 {
+            color: #667eea;
+            font-size: 2em;
+            margin-bottom: 25px;
+            padding-bottom: 15px;
+            border-bottom: 3px solid #667eea;
+        }
+
+        h3 {
+            color: #764ba2;
+            font-size: 1.5em;
+            margin: 30px 0 15px 0;
+            padding-left: 15px;
+            border-left: 5px solid #764ba2;
+        }
+
+        h4 {
+            color: #555;
+            font-size: 1.2em;
+            margin: 20px 0 10px 0;
+        }
+
+        .card {
+            background: #f8f9fa;
+            border-radius: 15px;
+            padding: 25px;
+            margin: 20px 0;
+            border-left: 5px solid #667eea;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .card h4 {
+            color: #667eea;
+            margin-top: 0;
+        }
+
+        .warning {
+            background: #fff3cd;
+            border-left-color: #ffc107;
+            border: 2px solid #ffc107;
+        }
+
+        .danger {
+            background: #f8d7da;
+            border-left-color: #dc3545;
+            border: 2px solid #dc3545;
+        }
+
+        .success {
+            background: #d4edda;
+            border-left-color: #28a745;
+            border: 2px solid #28a745;
+        }
+
+        .info {
+            background: #d1ecf1;
+            border-left-color: #17a2b8;
+            border: 2px solid #17a2b8;
+        }
+
+        ul,
+        ol {
+            margin: 15px 0;
+            padding-left: 30px;
+        }
+
+        li {
+            margin: 10px 0;
+            line-height: 1.8;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin: 20px 0;
+        }
+
+        .recipe {
+            background: white;
+            border-radius: 12px;
+            padding: 20px;
+            border: 2px solid #e9ecef;
+            transition: all 0.3s;
+        }
+
+        .recipe:hover {
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+            transform: translateY(-5px);
+            border-color: #667eea;
+        }
+
+        .recipe h4 {
+            color: #667eea;
+            font-size: 1.3em;
+            margin-bottom: 15px;
+        }
+
+        .ingredients {
+            background: #f8f9fa;
+            padding: 15px;
+            border-radius: 8px;
+            margin: 15px 0;
+        }
+
+        .ingredients h5 {
+            color: #764ba2;
+            margin-bottom: 10px;
+        }
+
+        .steps {
+            margin-top: 15px;
+        }
+
+        .steps h5 {
+            color: #764ba2;
+            margin-bottom: 10px;
+        }
+
+        .step {
+            padding: 12px;
+            margin: 8px 0;
+            background: #f1f3f5;
+            border-radius: 8px;
+            border-left: 4px solid #667eea;
+        }
+
+        .timeline {
+            position: relative;
+            padding-left: 40px;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 15px;
+            top: 0;
+            bottom: 0;
+            width: 3px;
+            background: #667eea;
+        }
+
+        .timeline-item {
+            position: relative;
+            margin-bottom: 30px;
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -33px;
+            top: 5px;
+            width: 15px;
+            height: 15px;
+            border-radius: 50%;
+            background: #667eea;
+            border: 3px solid white;
+            box-shadow: 0 0 0 3px #667eea;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        th {
+            background: #667eea;
+            color: white;
+            padding: 15px;
+            text-align: left;
+            font-weight: 600;
+        }
+
+        td {
+            padding: 15px;
+            border-bottom: 1px solid #e9ecef;
+        }
+
+        tr:hover {
+            background: #f8f9fa;
+        }
+
+        .icon {
+            display: inline-block;
+            margin-right: 8px;
+        }
+
+        .tip {
+            background: #e7f3ff;
+            border-left: 5px solid #2196F3;
+            padding: 15px 20px;
+            margin: 15px 0;
+            border-radius: 8px;
+        }
+
+        .tip::before {
+            content: "💡 ";
+            font-size: 1.2em;
+        }
+
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 1.8em;
+            }
+
+            nav ul {
+                flex-direction: column;
+            }
+
+            nav button {
+                width: 100%;
+            }
+
+            .grid {
+                grid-template-columns: 1fr;
+            }
+        }
     </style>
 </head>
+
 <body>
+    <div class="container">
+        <header>
+            <h1>🏥 위전절제 환자 건강회복 가이드</h1>
+            <p>체계적인 식이요법과 생활관리로 건강한 일상으로 복귀하세요</p>
+        </header>
 
-    <div class="hero">
-        <h1>🌿 위(胃)없는 셰프의 생존 기록</h1>
-        <p class="lead">절망 끝에서 찾아낸, 먹고 사는 이야기</p>
-    </div>
+        <nav>
+            <ul>
+                <li><button onclick="showSection('overview')" class="active">개요</button></li>
+                <li><button onclick="showSection('timeline')">회복 단계</button></li>
+                <li><button onclick="showSection('nutrition')">영양관리</button></li>
+                <li><button onclick="showSection('meals')">추천 식단</button></li>
+                <li><button onclick="showSection('recipes')">조리법</button></li>
+                <li><button onclick="showSection('symptoms')">증상관리</button></li>
+                <li><button onclick="showSection('lifestyle')">생활수칙</button></li>
+                <li><button onclick="showSection('supplements')">영양제</button></li>
+            </ul>
+        </nav>
 
-    <div class="container mt-4">
-        
-        <div class="text-center mb-5">
-            <h3 class="fw-bold">안녕하세요, 마음사진 김 동홍 입니다.</h3>
-            <p class="text-muted">25년 마음사진 요리 인생, 위 전절제 수술을 겪으며<br>직접 체험한 <b>'진짜 생존법'</b>을 공유합니다.</p>
-        </div>
+        <div class="content">
+            <!-- 개요 섹션 -->
+            <section id="overview" class="section active">
+                <h2>위전절제술 후 관리 개요</h2>
 
-        <div class="row">
-            
-            <div class="col-md-6">
-                <div class="card chef-card">
-                    <div class="card-header">🍚 1. 식사 원칙 (가장 중요!)</div>
-                    <div class="card-body">
-                        <p>위가 없으면 음식을 저장할 곳이 없습니다.</p>
+                <div class="card info">
+                    <h4>🎯 이 가이드의 목적</h4>
+                    <p>위전절제술 후 건강한 회복을 위한 단계별 식이요법, 영양관리, 생활습관 개선 방법을 제공합니다.</p>
+                </div>
+
+                <div class="card">
+                    <h4>주요 변화 이해하기</h4>
+                    <ul>
+                        <li><strong>소화 능력 변화:</strong> 위가 없어져 한 번에 먹을 수 있는 양이 크게 감소합니다</li>
+                        <li><strong>영양소 흡수 감소:</strong> 비타민 B12, 철분, 칼슘 등의 흡수가 어려워집니다</li>
+                        <li><strong>식사 횟수 증가:</strong> 하루 6-8회 소량씩 나누어 먹어야 합니다</li>
+                        <li><strong>덤핑증후군 위험:</strong> 음식이 빠르게 소장으로 내려가 증상이 발생할 수 있습니다</li>
+                    </ul>
+                </div>
+
+                <div class="card success">
+                    <h4>✅ 회복의 핵심 원칙</h4>
+                    <ol>
+                        <li><strong>천천히 적응:</strong> 급하게 서두르지 말고 단계적으로 진행합니다</li>
+                        <li><strong>규칙적인 식사:</strong> 정해진 시간에 소량씩 자주 섭취합니다</li>
+                        <li><strong>충분한 영양:</strong> 단백질과 필수 영양소를 충분히 섭취합니다</li>
+                        <li><strong>꾸준한 관리:</strong> 평생 동안 지속적인 건강관리가 필요합니다</li>
+                    </ol>
+                </div>
+            </section>
+
+            <!-- 회복 단계 섹션 -->
+            <section id="timeline" class="section">
+                <h2>단계별 회복 타임라인</h2>
+
+                <div class="timeline">
+                    <div class="timeline-item">
+                        <div class="card">
+                            <h4>수술 직후 (0-3일)</h4>
+                            <p><strong>금식 기간</strong></p>
+                            <ul>
+                                <li>경구 섭취 금지</li>
+                                <li>정맥 영양 공급</li>
+                                <li>수분 보충 시작 (의료진 지시)</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="timeline-item">
+                        <div class="card">
+                            <h4>1단계: 유동식 (4-7일)</h4>
+                            <p><strong>맑은 유동식으로 시작</strong></p>
+                            <ul>
+                                <li>물, 미음, 맑은 육수</li>
+                                <li>1회 30-50ml, 하루 6-8회</li>
+                                <li>천천히 마시기 (1회 10-15분)</li>
+                                <li>식사 간격: 2-3시간</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="timeline-item">
+                        <div class="card">
+                            <h4>2단계: 갈은 유동식 (1-2주)</h4>
+                            <p><strong>농도가 있는 유동식</strong></p>
+                            <ul>
+                                <li>미음, 묽은 죽, 두유, 단백질 쉐이크</li>
+                                <li>1회 50-100ml, 하루 6-8회</li>
+                                <li>계란찜, 부드러운 두부</li>
+                                <li>모든 음식은 믹서로 갈아서</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="timeline-item">
+                        <div class="card">
+                            <h4>3단계: 연식 (2-4주)</h4>
+                            <p><strong>부드러운 고형식</strong></p>
+                            <ul>
+                                <li>부드러운 죽, 으깬 감자</li>
+                                <li>1회 100-150ml, 하루 6회</li>
+                                <li>생선살, 달걀, 두부</li>
+                                <li>잘 익힌 채소 (으깨서)</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="timeline-item">
+                        <div class="card">
+                            <h4>4단계: 연한 밥 (4주 이후)</h4>
+                            <p><strong>점진적 일반식 적응</strong></p>
+                            <ul>
+                                <li>진밥, 된죽</li>
+                                <li>1회 150-200ml, 하루 5-6회</li>
+                                <li>다양한 단백질 식품</li>
+                                <li>부드러운 과일과 채소</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="timeline-item">
+                        <div class="card success">
+                            <h4>5단계: 일반식 (3개월 이후)</h4>
+                            <p><strong>개인별 맞춤 식단</strong></p>
+                            <ul>
+                                <li>보통 밥 (개인 적응도에 따라)</li>
+                                <li>1회 200-250ml, 하루 5-6회</li>
+                                <li>대부분의 음식 섭취 가능</li>
+                                <li>자신만의 식단 패턴 확립</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 영양관리 섹션 -->
+            <section id="nutrition" class="section">
+                <h2>영양관리 가이드</h2>
+
+                <h3>단백질 섭취 (가장 중요)</h3>
+                <div class="card success">
+                    <h4>하루 권장량: 체중 1kg당 1.2-1.5g</h4>
+                    <p>예: 60kg → 72-90g의 단백질</p>
+
+                    <h4 style="margin-top: 20px;">우수한 단백질 식품</h4>
+                    <div class="grid">
+                        <div>
+                            <strong>동물성 단백질</strong>
+                            <ul>
+                                <li>계란 (1개 = 6g)</li>
+                                <li>두부 (100g = 8g)</li>
+                                <li>닭가슴살 (100g = 23g)</li>
+                                <li>흰살생선 (100g = 20g)</li>
+                                <li>연어 (100g = 20g)</li>
+                                <li>새우 (100g = 24g)</li>
+                                <li>그릭요거트 (100g = 10g)</li>
+                            </ul>
+                        </div>
+                        <div>
+                            <strong>식물성 단백질</strong>
+                            <ul>
+                                <li>두유 (200ml = 7g)</li>
+                                <li>렌틸콩 (100g = 9g)</li>
+                                <li>병아리콩 (100g = 8g)</li>
+                                <li>퀴노아 (100g = 4g)</li>
+                                <li>아몬드 (30g = 6g)</li>
+                                <li>호두 (30g = 4g)</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <h3>비타민 및 미네랄</h3>
+                <div class="grid">
+                    <div class="card warning">
+                        <h4>비타민 B12</h4>
+                        <p><strong>⚠️ 필수 보충 (평생)</strong></p>
                         <ul>
-                            <li><b>천천히:</b> 한 끼 식사는 무조건 <span class="highlight">30분 이상</span></li>
-                            <li><b>꼭꼭:</b> 죽이 될 때까지 30번 씹기</li>
-                            <li><b>나누어:</b> 하루 3끼가 아니라 6끼로 소식하기</li>
+                            <li>위에서 분비되는 내인성 인자 없어 흡수 불가</li>
+                            <li>월 1회 주사 또는 매일 고용량 경구제</li>
+                            <li>결핍 시: 빈혈, 신경손상</li>
+                        </ul>
+                    </div>
+
+                    <div class="card warning">
+                        <h4>철분</h4>
+                        <p><strong>⚠️ 흡수율 감소</strong></p>
+                        <ul>
+                            <li>위산 부족으로 흡수 어려움</li>
+                            <li>철분제 복용 권장</li>
+                            <li>비타민 C와 함께 섭취</li>
+                            <li>식품: 붉은 고기, 시금치, 렌틸콩</li>
+                        </ul>
+                    </div>
+
+                    <div class="card warning">
+                        <h4>칼슘 & 비타민 D</h4>
+                        <p><strong>⚠️ 골다공증 예방</strong></p>
+                        <ul>
+                            <li>칼슘 흡수 감소</li>
+                            <li>하루 1,000-1,500mg 섭취</li>
+                            <li>비타민 D 함께 보충</li>
+                            <li>식품: 우유, 치즈, 두유, 멸치</li>
+                        </ul>
+                    </div>
+
+                    <div class="card info">
+                        <h4>비타민 A, E, K</h4>
+                        <p><strong>지용성 비타민</strong></p>
+                        <ul>
+                            <li>지방 흡수 감소로 부족 가능</li>
+                            <li>종합비타민으로 보충</li>
+                            <li>식품: 당근, 시금치, 견과류</li>
                         </ul>
                     </div>
                 </div>
-            </div>
 
-            <div class="col-md-6">
-                <div class="card chef-card">
-                    <div class="card-header">🚨 2. 덤핑 증후군 피하기</div>
-                    <div class="card-body">
-                        <p>식사 후 식은땀이 나고 어지럽다면?</p>
+                <h3>수분 섭취</h3>
+                <div class="card info">
+                    <h4>💧 하루 1.5-2L (식사와 별도)</h4>
+                    <ul>
+                        <li><strong>식사 30분 전후 음료 자제:</strong> 덤핑증후군 예방</li>
+                        <li><strong>조금씩 자주:</strong> 한 번에 많이 마시지 않기</li>
+                        <li><strong>권장 음료:</strong> 물, 보리차, 둥글레차</li>
+                        <li><strong>피할 음료:</strong> 탄산음료, 카페인 과다, 알코올</li>
+                    </ul>
+                </div>
+            </section>
+
+            <!-- 추천 식단 섹션 -->
+            <section id="meals" class="section">
+                <h2>단계별 추천 식단표</h2>
+
+                <h3>1단계: 유동식 (수술 후 4-7일)</h3>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>시간</th>
+                            <th>메뉴</th>
+                            <th>양</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>07:00</td>
+                            <td>미음</td>
+                            <td>30-50ml</td>
+                        </tr>
+                        <tr>
+                            <td>09:00</td>
+                            <td>맑은 채소 육수</td>
+                            <td>30-50ml</td>
+                        </tr>
+                        <tr>
+                            <td>11:00</td>
+                            <td>미음</td>
+                            <td>30-50ml</td>
+                        </tr>
+                        <tr>
+                            <td>13:00</td>
+                            <td>맑은 닭육수</td>
+                            <td>30-50ml</td>
+                        </tr>
+                        <tr>
+                            <td>15:00</td>
+                            <td>미음</td>
+                            <td>30-50ml</td>
+                        </tr>
+                        <tr>
+                            <td>17:00</td>
+                            <td>맑은 쇠고기 육수</td>
+                            <td>30-50ml</td>
+                        </tr>
+                        <tr>
+                            <td>19:00</td>
+                            <td>미음</td>
+                            <td>30-50ml</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <h3>2단계: 갈은 유동식 (1-2주)</h3>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>시간</th>
+                            <th>메뉴</th>
+                            <th>양</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>07:00</td>
+                            <td>미음 + 계란찜(갈은 것)</td>
+                            <td>80ml</td>
+                        </tr>
+                        <tr>
+                            <td>09:30</td>
+                            <td>두유</td>
+                            <td>100ml</td>
+                        </tr>
+                        <tr>
+                            <td>12:00</td>
+                            <td>묽은 닭죽(믹서)</td>
+                            <td>100ml</td>
+                        </tr>
+                        <tr>
+                            <td>14:30</td>
+                            <td>단백질 쉐이크</td>
+                            <td>100ml</td>
+                        </tr>
+                        <tr>
+                            <td>17:00</td>
+                            <td>흰살생선죽(믹서)</td>
+                            <td>100ml</td>
+                        </tr>
+                        <tr>
+                            <td>19:30</td>
+                            <td>두부죽(갈은 것)</td>
+                            <td>100ml</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <h3>3단계: 연식 (2-4주)</h3>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>시간</th>
+                            <th>메뉴</th>
+                            <th>양</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>07:00</td>
+                            <td>부드러운 죽 + 계란찜 + 김</td>
+                            <td>120ml</td>
+                        </tr>
+                        <tr>
+                            <td>10:00</td>
+                            <td>바나나 두유 스무디</td>
+                            <td>100ml</td>
+                        </tr>
+                        <tr>
+                            <td>12:30</td>
+                            <td>닭가슴살 죽 + 으깬 호박</td>
+                            <td>150ml</td>
+                        </tr>
+                        <tr>
+                            <td>15:00</td>
+                            <td>그릭요거트 + 꿀</td>
+                            <td>100ml</td>
+                        </tr>
+                        <tr>
+                            <td>17:30</td>
+                            <td>생선살죽 + 으깬 감자</td>
+                            <td>150ml</td>
+                        </tr>
+                        <tr>
+                            <td>20:00</td>
+                            <td>두부죽 + 으깬 시금치</td>
+                            <td>130ml</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <h3>4-5단계: 일반식 적응기 (4주 이후)</h3>
+                <div class="grid">
+                    <div class="card">
+                        <h4>아침 식단 예시</h4>
                         <ul>
-                            <li>국물에 밥 말아 먹지 않기 (물따로 밥따로)</li>
-                            <li>식사 후 30분은 비스듬히 기대어 쉬기</li>
-                            <li>단 음식(설탕, 믹스커피)은 절대 금물</li>
+                            <li>진밥 또는 된죽 (150-200ml)</li>
+                            <li>계란찜 또는 삶은 계란</li>
+                            <li>구운 김</li>
+                            <li>부드러운 나물 (시금치, 호박)</li>
+                            <li>두부 조림</li>
+                        </ul>
+                    </div>
+
+                    <div class="card">
+                        <h4>점심 식단 예시</h4>
+                        <ul>
+                            <li>진밥 (200ml)</li>
+                            <li>닭가슴살 스테이크</li>
+                            <li>으깬 감자</li>
+                            <li>당근 찜</li>
+                            <li>두부 된장국</li>
+                        </ul>
+                    </div>
+
+                    <div class="card">
+                        <h4>저녁 식단 예시</h4>
+                        <ul>
+                            <li>진밥 (180ml)</li>
+                            <li>생선구이 (연어, 고등어)</li>
+                            <li>애호박 볶음</li>
+                            <li>두부 샐러드</li>
+                            <li>미역국</li>
+                        </ul>
+                    </div>
+
+                    <div class="card">
+                        <h4>간식 예시</h4>
+                        <ul>
+                            <li>바나나 1/2개</li>
+                            <li>그릭요거트 100g</li>
+                            <li>삶은 고구마 50g</li>
+                            <li>아몬드 10알</li>
+                            <li>치즈 1장</li>
+                            <li>단백질 쉐이크</li>
                         </ul>
                     </div>
                 </div>
-            </div>
 
-        </div>
+                <h3>주간 식단 플랜 (3개월 이후)</h3>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>요일</th>
+                            <th>아침</th>
+                            <th>점심</th>
+                            <th>저녁</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>월요일</td>
+                            <td>계란죽 + 김 + 멸치볶음</td>
+                            <td>닭가슴살덮밥 + 시금치나물</td>
+                            <td>연어구이 + 현미밥 + 된장국</td>
+                        </tr>
+                        <tr>
+                            <td>화요일</td>
+                            <td>두부스크램블 + 진밥</td>
+                            <td>쇠고기죽 + 호박나물</td>
+                            <td>흰살생선찜 + 밥 + 미역국</td>
+                        </tr>
+                        <tr>
+                            <td>수요일</td>
+                            <td>그릭요거트 + 견과류</td>
+                            <td>닭고기 야채죽</td>
+                            <td>두부스테이크 + 밥 + 콩나물국</td>
+                        </tr>
+                        <tr>
+                            <td>목요일</td>
+                            <td>계란찜 + 밥 + 김</td>
+                            <td>참치덮밥 + 당근찜</td>
+                            <td>삼치구이 + 밥 + 무국</td>
+                        </tr>
+                        <tr>
+                            <td>금요일</td>
+                            <td>새우죽 + 계란</td>
+                            <td>닭가슴살 샐러드 + 고구마</td>
+                            <td>갈치조림 + 밥 + 근대국</td>
+                        </tr>
+                        <tr>
+                            <td>토요일</td>
+                            <td>바나나 스무디 + 견과류</td>
+                            <td>소고기야채죽</td>
+                            <td>코다리찜 + 밥 + 시래기국</td>
+                        </tr>
+                        <tr>
+                            <td>일요일</td>
+                            <td>오믈렛 + 밥 + 멸치</td>
+                            <td>전복죽</td>
+                            <td>닭가슴살구이 + 밥 + 콩비지</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </section>
 
-        <div class="card chef-card mt-3">
-            <div class="card-header">🎥 셰프의 추천: 속 편한 요리 영상</div>
-            <div class="card-body text-center">
-                <div class="ratio ratio-16x9">
-                    <iframe src="https://www.youtube.com/embed/S_V4sL7t1b0" title="YouTube video" allowfullscreen></iframe>
+            <!-- 조리법 섹션 -->
+            <section id="recipes" class="section">
+                <h2>상세 조리법 가이드</h2>
+
+                <h3>기본 조리 원칙</h3>
+                <div class="card info">
+                    <ul>
+                        <li><strong>부드럽게:</strong> 충분히 익혀서 소화가 잘 되도록</li>
+                        <li><strong>저자극:</strong> 맵고 짜고 기름진 것 피하기</li>
+                        <li><strong>소량 조리:</strong> 신선한 재료로 먹을 만큼만</li>
+                        <li><strong>위생 철저:</strong> 식중독 예방 중요</li>
+                    </ul>
                 </div>
-                <p class="mt-3 text-muted">👆 위 영상을 클릭하면 재생됩니다.</p>
-            </div>
-        </div>
 
-        <div class="text-center mt-5 mb-5">
-            <button class="btn btn-success btn-lg" onclick="alert('마음사진 김동홍 에게 응원의 메시지를 보냈습니다!')">
-                💌 셰프에게 응원 보내기
-            </button>
-        </div>
+                <div class="grid">
+                    <!-- 레시피 1 -->
+                    <div class="recipe">
+                        <h4>🍚 영양 미음</h4>
+                        <div class="ingredients">
+                            <h5>재료 (1인분)</h5>
+                            <ul>
+                                <li>쌀 30g (2큰술)</li>
+                                <li>물 500ml</li>
+                                <li>소금 약간</li>
+                            </ul>
+                        </div>
+                        <div class="steps">
+                            <h5>조리 순서</h5>
+                            <div class="step">1. 쌀을 깨끗이 씻어 1시간 불립니다.</div>
+                            <div class="step">2. 믹서에 쌀과 물 200ml를 넣고 곱게 갈아줍니다.</div>
+                            <div class="step">3. 냄비에 간 쌀과 나머지 물 300ml를 넣습니다.</div>
+                            <div class="step">4. 중불에서 저어가며 20-30분 끓입니다.</div>
+                            <div class="step">5. 쌀알이 완전히 풀어지면 소금으로 간합니다.</div>
+                            <div class="step">6. 체에 한 번 더 거르면 더욱 부드럽습니다.</div>
+                        </div>
+                        <div class="tip">천천히 저어가며 끓여야 눌지 않습니다. 처음엔 쌀 양을 줄여서 묽게 만드세요.</div>
+                    </div>
 
+                    <!-- 레시피 2 -->
+                    <div class="recipe">
+                        <h4>🥚 부드러운 계란찜</h4>
+                        <div class="ingredients">
+                            <h5>재료 (1인분)</h5>
+                            <ul>
+                                <li>계란 1개</li>
+                                <li>물 또는 육수 100ml</li>
+                                <li>소금 약간</li>
+                                <li>참기름 몇 방울</li>
+                            </ul>
+                        </div>
+                        <div class="steps">
+                            <h5>조리 순서</h5>
+                            <div class="step">1. 계란을 그릇에 깨뜨려 풀어줍니다.</div>
+                            <div class="step">2. 미지근한 물(또는 육수)을 넣고 잘 섞습니다.</div>
+                            <div class="step">3. 소금으로 간하고 체에 한 번 거릅니다.</div>
+                            <div class="step">4. 찜기에 약한 불로 10-12분 찝니다.</div>
+                            <div class="step">5. 표면이 매끈하고 젤리처럼 굳으면 완성.</div>
+                            <div class="step">6. 참기름을 살짝 뿌려 마무리합니다.</div>
+                        </div>
+                        <div class="tip">계란:물 = 1:1.5 비율이 가장 부드럽습니다. 전자레인지는 피하세요.</div>
+                    </div>
+
+                    <!-- 레시피 3 -->
+                    <div class="recipe">
+                        <h4>🍲 닭가슴살 야채죽</h4>
+                        <div class="ingredients">
+                            <h5>재료 (2인분)</h5>
+                            <ul>
+                                <li>닭가슴살 100g</li>
+                                <li>쌀 1/2컵</li>
+                                <li>애호박 1/4개</li>
+                                <li>당근 1/4개</li>
+                                <li>물 4컵</li>
+                                <li>참기름 1작은술</li>
+                                <li>소금 약간</li>
+                            </ul>
+                        </div>
+                        <div class="steps">
+                            <h5>조리 순서</h5>
+                            <div class="step">1. 쌀을 씻어 30분 불립니다.</div>
+                            <div class="step">2. 닭가슴살은 삶아서 잘게 찢어둡니다.</div>
+                            <div class="step">3. 애호박, 당근을 잘게 다집니다.</div>
+                            <div class="step">4. 냄비에 참기름을 두르고 쌀을 볶습니다.</div>
+                            <div class="step">5. 물을 붓고 중불에서 20분 끓입니다.</div>
+                            <div class="step">6. 닭고기와 야채를 넣고 10분 더 끓입니다.</div>
+                            <div class="step">7. 소금으로 간하고 죽이 퍼질 때까지 저어줍니다.</div>
+                        </div>
+                        <div class="tip">닭고기 대신 흰살생선도 좋습니다. 야채는 아주 잘게 썰어주세요.</div>
+                    </div>
+
+                    <!-- 레시피 4 -->
+                    <div class="recipe">
+                        <h4>🐟 흰살생선 찜</h4>
+                        <div class="ingredients">
+                            <h5>재료 (1인분)</h5>
+                            <ul>
+                                <li>흰살생선(대구, 광어) 100g</li>
+                                <li>무 50g</li>
+                                <li>대파 약간</li>
+                                <li>생강 약간</li>
+                                <li>맑은 국물 200ml</li>
+                                <li>소금, 후추 약간</li>
+                            </ul>
+                        </div>
+                        <div class="steps">
+                            <h5>조리 순서</h5>
+                            <div class="step">1. 생선은 한입 크기로 자르고 소금, 후추로 밑간합니다.</div>
+                            <div class="step">2. 무는 얇게 채썰고, 대파, 생강도 준비합니다.</div>
+                            <div class="step">3. 냄비에 무를 깔고 생선을 올립니다.</div>
+                            <div class="step">4. 국물을 부어 생선이 잠기게 합니다.</div>
+                            <div class="step">5. 대파, 생강을 올리고 뚜껑을 닫습니다.</div>
+                            <div class="step">6. 중불에서 10-15분 찝니다.</div>
+                            <div class="step">7. 생선이 부드럽게 익으면 완성입니다.</div>
+                        </div>
+                        <div class="tip">생강은 비린내 제거와 소화에 도움됩니다. 뼈가 없는 부위를 사용하세요.</div>
+                    </div>
+
+                    <!-- 레시피 5 -->
+                    <div class="recipe">
+                        <h4>🥔 부드러운 으깬 감자</h4>
+                        <div class="ingredients">
+                            <h5>재료 (2인분)</h5>
+                            <ul>
+                                <li>감자 2개 (중간 크기)</li>
+                                <li>우유 100ml</li>
+                                <li>버터 1큰술</li>
+                                <li>소금 약간</li>
+                                <li>후추 약간</li>
+                            </ul>
+                        </div>
+                        <div class="steps">
+                            <h5>조리 순서</h5>
+                            <div class="step">1. 감자를 깨끗이 씻어 껍질을 벗깁니다.</div>
+                            <div class="step">2. 적당한 크기로 자르고 물에 담가 전분을 빼냅니다.</div>
+                            <div class="step">3. 냄비에 감자와 물을 넣고 20분간 삶습니다.</div>
+                            <div class="step">4. 감자가 부드러워지면 물을 버리고 으깹니다.</div>
+                            <div class="step">5. 따뜻한 우유와 버터를 조금씩 넣으며 섞습니다.</div>
+                            <div class="step">6. 소금, 후추로 간하고 부드럽게 만듭니다.</div>
+                            <div class="step">7. 너무 되직하면 우유를 더 추가합니다.</div>
+                        </div>
+                        <div class="tip">우유 대신 두유를 사용해도 좋습니다. 덩어리 없이 아주 곱게 으깨세요.</div>
+                    </div>
+
+                    <!-- 레시피 6 -->
+                    <div class="recipe">
+                        <h4>🥣 두부 스크램블</h4>
+                        <div class="ingredients">
+                            <h5>재료 (1인분)</h5>
+                            <ul>
+                                <li>연두부 150g</li>
+                                <li>계란 1개</li>
+                                <li>시금치 한 줌</li>
+                                <li>당근 약간</li>
+                                <li>올리브유 1작은술</li>
+                                <li>소금, 후추 약간</li>
+                            </ul>
+                        </div>
+                        <div class="steps">
+                            <h5>조리 순서</h5>
+                            <div class="step">1. 두부는 물기를 빼고 으깹니다.</div>
+                            <div class="step">2. 시금치는 데쳐서 잘게 썰고, 당근은 곱게 다집니다.</div>
+                            <div class="step">3. 팬에 올리브유를 두르고 당근을 볶습니다.</div>
+                            <div class="step">4. 으깬 두부를 넣고 중불에서 볶습니다.</div>
+                            <div class="step">5. 계란을 풀어서 넣고 빠르게 섞어줍니다.</div>
+                            <div class="step">6. 시금치를 넣고 소금, 후추로 간합니다.</div>
+                            <div class="step">7. 부드럽게 익으면 불을 끕니다.</div>
+                        </div>
+                        <div class="tip">고단백 식사로 좋습니다. 야채는 취향껏 바꿔도 됩니다.</div>
+                    </div>
+
+                    <!-- 레시피 7 -->
+                    <div class="recipe">
+                        <h4>🍵 영양 육수 만들기</h4>
+                        <div class="ingredients">
+                            <h5>재료 (1L)</h5>
+                            <ul>
+                                <li>닭뼈 또는 사골 500g</li>
+                                <li>무 100g</li>
+                                <li>대파 1대</li>
+                                <li>양파 1개</li>
+                                <li>마늘 5쪽</li>
+                                <li>생강 1조각</li>
+                                <li>물 2L</li>
+                            </ul>
+                        </div>
+                        <div class="steps">
+                            <h5>조리 순서</h5>
+                            <div class="step">1. 닭뼈는 끓는 물에 5분 데쳐 핏물을 뺍니다.</div>
+                            <div class="step">2. 야채들을 큼직하게 썰어 준비합니다.</div>
+                            <div class="step">3. 압력솥에 모든 재료와 물을 넣습니다.</div>
+                            <div class="step">4. 고압으로 1시간 끓입니다 (일반 냄비는 2-3시간).</div>
+                            <div class="step">5. 압력을 뺀 후 체에 걸러냅니다.</div>
+                            <div class="step">6. 기름은 걷어내고 맑은 육수만 사용합니다.</div>
+                            <div class="step">7. 소분하여 냉동 보관합니다.</div>
+                        </div>
+                        <div class="tip">육수는 죽, 국, 찜 등 다양하게 활용하세요. 3개월까지 냉동 보관 가능합니다.</div>
+                    </div>
+
+                    <!-- 레시피 8 -->
+                    <div class="recipe">
+                        <h4>🥤 단백질 스무디</h4>
+                        <div class="ingredients">
+                            <h5>재료 (1인분)</h5>
+                            <ul>
+                                <li>바나나 1/2개</li>
+                                <li>그릭요거트 100g</li>
+                                <li>아몬드 10알</li>
+                                <li>두유 200ml</li>
+                                <li>꿀 1작은술</li>
+                                <li>시나몬 가루 약간</li>
+                            </ul>
+                        </div>
+                        <div class="steps">
+                            <h5>조리 순서</h5>
+                            <div class="step">1. 바나나는 껍질을 벗겨 적당히 자릅니다.</div>
+                            <div class="step">2. 아몬드는 미리 물에 불려둡니다.</div>
+                            <div class="step">3. 믹서에 모든 재료를 넣습니다.</div>
+                            <div class="step">4. 30초-1분간 곱게 갈아줍니다.</div>
+                            <div class="step">5. 덩어리가 없을 때까지 갑니다.</div>
+                            <div class="step">6. 컵에 담고 시나몬을 살짝 뿌립니다.</div>
+                        </div>
+                        <div class="tip">아침 대용이나 간식으로 좋습니다. 단백질 파우더를 추가해도 좋아요.</div>
+                    </div>
+                </div>
+
+                <h3>조리 도구 활용팁</h3>
+                <div class="grid">
+                    <div class="card">
+                        <h4>믹서/블렌더</h4>
+                        <ul>
+                            <li>초기 단계 필수 도구</li>
+                            <li>음식을 완전히 갈아서 부드럽게</li>
+                            <li>육수와 함께 갈면 더 부드러움</li>
+                            <li>매 사용 후 깨끗이 세척</li>
+                        </ul>
+                    </div>
+
+                    <div class="card">
+                        <h4>찜기</h4>
+                        <ul>
+                            <li>영양소 파괴 최소화</li>
+                            <li>계란찜, 생선찜에 필수</li>
+                            <li>야채 익히기에 좋음</li>
+                            <li>기름 없이 조리 가능</li>
+                        </ul>
+                    </div>
+
+                    <div class="card">
+                        <h4>압력솥</h4>
+                        <ul>
+                            <li>육수 만들기 편리</li>
+                            <li>고기를 부드럽게 조리</li>
+                            <li>시간 절약</li>
+                            <li>영양소 보존</li>
+                        </ul>
+                    </div>
+
+                    <div class="card">
+                        <h4>체</h4>
+                        <ul>
+                            <li>미음 걸러내기</li>
+                            <li>부드러운 질감 만들기</li>
+                            <li>덩어리 제거</li>
+                            <li>입자 고르게 하기</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 증상관리 섹션 -->
+            <section id="symptoms" class="section">
+                <h2>증상 관리 가이드</h2>
+
+                <h3>덤핑증후군</h3>
+                <div class="card danger">
+                    <h4>⚠️ 조기 덤핑증후군 (식후 10-30분)</h4>
+                    <p><strong>증상:</strong> 식은땀, 어지러움, 심계항진, 복통, 설사</p>
+                    <p><strong>원인:</strong> 음식이 소장으로 급격히 이동</p>
+
+                    <h4 style="margin-top: 20px;">예방 및 대처법</h4>
+                    <ul>
+                        <li><strong>천천히 먹기:</strong> 한 끼 최소 20-30분</li>
+                        <li><strong>소량씩 자주:</strong> 과식 금지</li>
+                        <li><strong>당분 제한:</strong> 설탕, 과일주스, 꿀 조심</li>
+                        <li><strong>식사와 음료 분리:</strong> 식사 30분 전후 음료 자제</li>
+                        <li><strong>누워서 휴식:</strong> 증상 발생 시 15-30분 눕기</li>
+                        <li><strong>단백질 우선:</strong> 탄수화물보다 단백질 먼저</li>
+                    </ul>
+                </div>
+
+                <div class="card warning">
+                    <h4>⚠️ 후기 덤핑증후군 (식후 1-3시간)</h4>
+                    <p><strong>증상:</strong> 저혈당, 떨림, 식은땀, 무기력, 두통</p>
+                    <p><strong>원인:</strong> 급격한 혈당 상승 후 인슐린 과다 분비</p>
+
+                    <h4 style="margin-top: 20px;">예방 및 대처법</h4>
+                    <ul>
+                        <li><strong>복합 탄수화물:</strong> 현미, 통곡물, 고구마</li>
+                        <li><strong>단순당 피하기:</strong> 사탕, 케이크, 음료수</li>
+                        <li><strong>간식 준비:</strong> 사탕이나 과일 휴대</li>
+                        <li><strong>증상 시 당분 섭취:</strong> 주스나 사탕 즉시 섭취</li>
+                        <li><strong>규칙적인 식사:</strong> 혈당 안정화</li>
+                    </ul>
+                </div>
+
+                <h3>기타 주요 증상</h3>
+                <div class="grid">
+                    <div class="card">
+                        <h4>역류 및 속쓰림</h4>
+                        <p><strong>대처법:</strong></p>
+                        <ul>
+                            <li>식후 바로 눕지 않기 (2시간 후)</li>
+                            <li>상체를 높여서 잠자기</li>
+                            <li>기름진 음식, 카페인 제한</li>
+                            <li>식사 후 가벼운 산책</li>
+                            <li>꽉 끼는 옷 피하기</li>
+                        </ul>
+                    </div>
+
+                    <div class="card">
+                        <h4>설사</h4>
+                        <p><strong>대처법:</strong></p>
+                        <ul>
+                            <li>지방 섭취 줄이기</li>
+                            <li>유제품 제한 (유당불내증)</li>
+                            <li>섬유질 조절</li>
+                            <li>수분 충분히 섭취</li>
+                            <li>지속되면 의사 상담</li>
+                        </ul>
+                    </div>
+
+                    <div class="card">
+                        <h4>빈혈</h4>
+                        <p><strong>대처법:</strong></p>
+                        <ul>
+                            <li>철분제 복용 (의사 처방)</li>
+                            <li>비타민 C와 함께 섭취</li>
+                            <li>붉은 고기, 시금치 섭취</li>
+                            <li>정기적인 혈액검사</li>
+                            <li>비타민 B12 주사</li>
+                        </ul>
+                    </div>
+
+                    <div class="card">
+                        <h4>체중 감소</h4>
+                        <p><strong>대처법:</strong></p>
+                        <ul>
+                            <li>고칼로리, 고단백 식사</li>
+                            <li>영양 보충제 활용</li>
+                            <li>식사 횟수 늘리기</li>
+                            <li>간식 자주 먹기</li>
+                            <li>영양사 상담</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="card danger">
+                    <h4>🚨 즉시 병원 방문이 필요한 증상</h4>
+                    <ul>
+                        <li>심한 복통이 지속될 때</li>
+                        <li>토혈 또는 혈변</li>
+                        <li>고열 (38도 이상)</li>
+                        <li>심한 구토로 음식 섭취 불가</li>
+                        <li>극심한 어지러움과 탈수</li>
+                        <li>의식 저하</li>
+                        <li>급격한 체중 감소 (한 달에 5kg 이상)</li>
+                    </ul>
+                </div>
+            </section>
+
+            <!-- 생활수칙 섹션 -->
+            <section id="lifestyle" class="section">
+                <h2>일상 생활 관리</h2>
+
+                <h3>식사 습관</h3>
+                <div class="card success">
+                    <h4>✅ 올바른 식사법</h4>
+                    <ul>
+                        <li><strong>천천히 꼭꼭 씹기:</strong> 한 입에 20-30회</li>
+                        <li><strong>소량씩 자주:</strong> 하루 5-6회 이상</li>
+                        <li><strong>규칙적인 시간:</strong> 매일 같은 시간에</li>
+                        <li><strong>편안한 자세:</strong> 앉아서 여유있게</li>
+                        <li><strong>식사 집중:</strong> TV, 스마트폰 자제</li>
+                        <li><strong>포만감 주의:</strong> 80% 선에서 멈추기</li>
+                    </ul>
+                </div>
+
+                <div class="card danger">
+                    <h4>❌ 피해야 할 음식</h4>
+                    <ul>
+                        <li><strong>자극적인 음식:</strong> 매운 음식, 너무 짠 음식</li>
+                        <li><strong>기름진 음식:</strong> 튀김, 삼겹살, 패스트푸드</li>
+                        <li><strong>단 음식:</strong> 케이크, 사탕, 초콜릿, 탄산음료</li>
+                        <li><strong>딱딱한 음식:</strong> 견과류, 마른 오징어, 딱딱한 과일</li>
+                        <li><strong>섬유질 과다:</strong> 생야채, 옥수수, 질긴 나물</li>
+                        <li><strong>카페인:</strong> 커피, 녹차 과다 섭취</li>
+                        <li><strong>알코올:</strong> 모든 종류의 술</li>
+                    </ul>
+                </div>
+
+                <h3>운동 및 활동</h3>
+                <div class="grid">
+                    <div class="card">
+                        <h4>수술 후 1개월</h4>
+                        <ul>
+                            <li>가벼운 실내 걷기</li>
+                            <li>하루 10-15분</li>
+                            <li>서서히 시간 늘리기</li>
+                            <li>무리한 활동 금지</li>
+                        </ul>
+                    </div>
+
+                    <div class="card">
+                        <h4>수술 후 2-3개월</h4>
+                        <ul>
+                            <li>야외 산책 30분</li>
+                            <li>가벼운 스트레칭</li>
+                            <li>계단 오르기 (천천히)</li>
+                            <li>수영 (상처 회복 후)</li>
+                        </ul>
+                    </div>
+
+                    <div class="card">
+                        <h4>수술 후 6개월 이후</h4>
+                        <ul>
+                            <li>빠르게 걷기</li>
+                            <li>요가, 필라테스</li>
+                            <li>자전거 타기</li>
+                            <li>가벼운 근력 운동</li>
+                        </ul>
+                    </div>
+
+                    <div class="card warning">
+                        <h4>⚠️ 피해야 할 운동</h4>
+                        <ul>
+                            <li>복부에 압박이 가는 운동</li>
+                            <li>무거운 것 들기</li>
+                            <li>격렬한 유산소 운동</li>
+                            <li>충격이 큰 운동</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <h3>수면 및 휴식</h3>
+                <div class="card info">
+                    <ul>
+                        <li><strong>충분한 수면:</strong> 하루 7-8시간</li>
+                        <li><strong>상체 높이기:</strong> 역류 예방을 위해 15-20cm</li>
+                        <li><strong>식후 2시간 후 취침:</strong> 소화 시간 확보</li>
+                        <li><strong>규칙적인 수면 패턴:</strong> 같은 시간에 자고 일어나기</li>
+                        <li><strong>낮잠:</strong> 필요시 20-30분 이내</li>
+                    </ul>
+                </div>
+
+                <h3>스트레스 관리</h3>
+                <div class="card">
+                    <h4>💆 추천 활동</h4>
+                    <ul>
+                        <li>명상 및 요가</li>
+                        <li>깊은 호흡 운동</li>
+                        <li>취미 활동 (그림, 음악, 독서)</li>
+                        <li>가벼운 산책</li>
+                        <li>가족, 친구와의 대화</li>
+                        <li>환자 모임 참여</li>
+                    </ul>
+                </div>
+
+                <h3>정기 검진</h3>
+                <div class="card warning">
+                    <h4>📅 검사 일정</h4>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>기간</th>
+                                <th>검사 항목</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>수술 후 3개월</td>
+                                <td>혈액검사, 영양상태 평가</td>
+                            </tr>
+                            <tr>
+                                <td>수술 후 6개월</td>
+                                <td>내시경, CT, 혈액검사</td>
+                            </tr>
+                            <tr>
+                                <td>수술 후 1년</td>
+                                <td>종합검사, 골밀도 검사</td>
+                            </tr>
+                            <tr>
+                                <td>이후 매년</td>
+                                <td>정기 검진, 영양상태 점검</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+            <!-- 영양제 섹션 -->
+            <section id="supplements" class="section">
+                <h2>영양 보충제 가이드</h2>
+
+                <div class="card warning">
+                    <h4>⚠️ 중요 안내</h4>
+                    <p>모든 영양제는 의사와 상담 후 복용하세요. 개인의 상태에 따라 필요량이 다릅니다.</p>
+                </div>
+
+                <h3>필수 영양제</h3>
+                <div class="grid">
+                    <div class="card danger">
+                        <h4>비타민 B12 (필수)</h4>
+                        <p><strong>복용법:</strong></p>
+                        <ul>
+                            <li>월 1회 근육주사 (1000μg)</li>
+                            <li>또는 매일 경구제 (1000-2000μg)</li>
+                            <li>평생 복용 필요</li>
+                            <li>정기적 혈중농도 검사</li>
+                        </ul>
+                        <p><strong>결핍 증상:</strong> 빈혈, 피로, 손발 저림, 기억력 저하</p>
+                    </div>
+
+                    <div class="card danger">
+                        <h4>철분 (필수)</h4>
+                        <p><strong>복용법:</strong></p>
+                        <ul>
+                            <li>하루 100-200mg (원소 철분 기준)</li>
+                            <li>비타민 C와 함께 공복 복용</li>
+                            <li>커피, 차와 2시간 간격</li>
+                            <li>변비 발생 시 의사 상담</li>
+                        </ul>
+                        <p><strong>결핍 증상:</strong> 빈혈, 어지러움, 피로, 창백</p>
+                    </div>
+
+                    <div class="card danger">
+                        <h4>칼슘 + 비타민 D (필수)</h4>
+                        <p><strong>복용법:</strong></p>
+                        <ul>
+                            <li>칼슘 1000-1500mg/일</li>
+                            <li>비타민 D 800-1000 IU/일</li>
+                            <li>하루 2-3회 나누어 복용</li>
+                            <li>식사와 함께</li>
+                        </ul>
+                        <p><strong>결핍 증상:</strong> 골다공증, 근육경련, 뼈통증</p>
+                    </div>
+
+                    <div class="card warning">
+                        <h4>종합비타민 (권장)</h4>
+                        <p><strong>복용법:</strong></p>
+                        <ul>
+                            <li>하루 1-2회</li>
+                            <li>식사 직후</li>
+                            <li>위전절제 환자용 추천</li>
+                            <li>지용성 비타민 포함 확인</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <h3>상황별 추가 영양제</h3>
+                <div class="grid">
+                    <div class="card">
+                        <h4>체중 감소가 심한 경우</h4>
+                        <ul>
+                            <li>단백질 파우더</li>
+                            <li>MCT 오일</li>
+                            <li>고칼로리 영양음료</li>
+                            <li>오메가-3</li>
+                        </ul>
+                    </div>
+
+                    <div class="card">
+                        <h4>소화 문제가 있는 경우</h4>
+                        <ul>
+                            <li>소화 효소제</li>
+                            <li>프로바이오틱스</li>
+                            <li>아연</li>
+                            <li>글루타민</li>
+                        </ul>
+                    </div>
+
+                    <div class="card">
+                        <h4>빈혈이 심한 경우</h4>
+                        <ul>
+                            <li>엽산</li>
+                            <li>구리</li>
+                            <li>비타민 B6</li>
+                            <li>EPO 주사 (의사 처방)</li>
+                        </ul>
+                    </div>
+
+                    <div class="card">
+                        <h4>면역력 강화</h4>
+                        <ul>
+                            <li>비타민 C</li>
+                            <li>아연</li>
+                            <li>셀레늄</li>
+                            <li>비타민 E</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <h3>영양제 복용 시간표 예시</h3>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>시간</th>
+                            <th>영양제</th>
+                            <th>주의사항</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>아침 (공복)</td>
+                            <td>철분 + 비타민 C</td>
+                            <td>물과 함께, 커피 2시간 후</td>
+                        </tr>
+                        <tr>
+                            <td>아침 (식후)</td>
+                            <td>종합비타민, 칼슘</td>
+                            <td>식사 직후</td>
+                        </tr>
+                        <tr>
+                            <td>점심 (식후)</td>
+                            <td>오메가-3, 프로바이오틱스</td>
+                            <td>식사 직후</td>
+                        </tr>
+                        <tr>
+                            <td>저녁 (식후)</td>
+                            <td>칼슘, 비타민 D</td>
+                            <td>식사 직후</td>
+                        </tr>
+                        <tr>
+                            <td>취침 전</td>
+                            <td>마그네슘 (필요시)</td>
+                            <td>수면 30분 전</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <div class="tip">
+                    영양제는 한꺼번에 많이 먹지 말고 하루에 나누어 드세요. 속이 불편하면 식사량을 늘리고 영양제를 줄이는 것이 좋습니다.
+                </div>
+            </section>
+        </div>
     </div>
 
+    <script>
+        function showSection(sectionId) {
+            // 모든 섹션 숨기기
+            const sections = document.querySelectorAll('.section');
+            sections.forEach(section => {
+                section.classList.remove('active');
+            });
+
+            // 모든 버튼 비활성화
+            const buttons = document.querySelectorAll('nav button');
+            buttons.forEach(button => {
+                button.classList.remove('active');
+            });
+
+            // 선택된 섹션 보이기
+            const selectedSection = document.getElementById(sectionId);
+            if (selectedSection) {
+                selectedSection.classList.add('active');
+            }
+
+            // 선택된 버튼 활성화
+            event.target.classList.add('active');
+
+            // 페이지 상단으로 스크롤
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+    </script>
 </body>
+
 </html>
